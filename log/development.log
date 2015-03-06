@@ -1,0 +1,429 @@
+  [1m[36m (18.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (24.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateEvents (20150306041233)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150306041233"]]
+  [1m[35m (25.3ms)[0m  commit transaction
+Migrating to CreateLocations (20150306041411)
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "tag" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150306041411"]]
+  [1m[35m (12.9ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateEventsLocations (20150306041914)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "events_locations" ("locations_id" integer, "events_id" integer) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_events_locations_on_locations_id" ON "events_locations" ("locations_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_locations_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_locations_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_events_locations_on_events_id" ON "events_locations" ("events_id")[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150306041914"]]
+  [1m[36m (23.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_locations_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_locations_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-03-06 04:26:46.713376"], ["name", "Event 1"], ["updated_at", "2015-03-06 04:26:46.713376"]]
+  [1m[35m (13.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-03-06 04:26:46.732150"], ["name", "Event 2"], ["updated_at", "2015-03-06 04:26:46.732150"]]
+  [1m[36m (17.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 04:26:46.776571"], ["name", "Location 1"], ["tag", "zqs2eMrU"], ["updated_at", "2015-03-06 04:26:46.776571"]]
+  [1m[35m (8.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 04:26:46.787499"], ["name", "Location 2"], ["tag", "iA9qygLo"], ["updated_at", "2015-03-06 04:26:46.787499"]]
+  [1m[36m (9.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 04:26:46.799111"], ["name", "Location 3"], ["tag", "M7R250mI"], ["updated_at", "2015-03-06 04:26:46.799111"]]
+  [1m[35m (10.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 04:26:46.811576"], ["name", "Location 4"], ["tag", "asJCQ0kO"], ["updated_at", "2015-03-06 04:26:46.811576"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 04:26:46.823271"], ["name", "Location 5"], ["tag", "HKYqaxuc"], ["updated_at", "2015-03-06 04:26:46.823271"]]
+  [1m[35m (10.1ms)[0m  commit transaction
+  [1m[36m (19.7ms)[0m  [1mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (10.7ms)[0m  CREATE TABLE "events_locations" ("locations_id" integer, "events_id" integer) 
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (18.4ms)[0m  CREATE  INDEX "index_events_locations_on_events_id" ON "events_locations" ("events_id")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+[0m
+  [1m[35m (15.5ms)[0m  CREATE  INDEX "index_events_locations_on_locations_id" ON "events_locations" ("locations_id")
+  [1m[36m (15.0ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "tag" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (15.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (15.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (15.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041914')[0m
+  [1m[35m (18.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150306041233')
+  [1m[36m (9.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041411')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-03-06 18:16:40.642702"], ["name", "Event 1"], ["updated_at", "2015-03-06 18:16:40.642702"]]
+  [1m[36m (14.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-03-06 18:16:40.662777"], ["name", "Event 2"], ["updated_at", "2015-03-06 18:16:40.662777"]]
+  [1m[35m (9.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 18:16:40.686232"], ["name", "Location 1"], ["tag", "n4IuNtdF"], ["updated_at", "2015-03-06 18:16:40.686232"]]
+  [1m[36m (11.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 18:16:40.701036"], ["name", "Location 2"], ["tag", "JAqVKuQa"], ["updated_at", "2015-03-06 18:16:40.701036"]]
+  [1m[35m (15.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 18:16:40.718945"], ["name", "Location 3"], ["tag", "rRfWKo35"], ["updated_at", "2015-03-06 18:16:40.718945"]]
+  [1m[36m (8.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 18:16:40.729512"], ["name", "Location 4"], ["tag", "dIEFkiLB"], ["updated_at", "2015-03-06 18:16:40.729512"]]
+  [1m[35m (12.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 18:16:40.744663"], ["name", "Location 5"], ["tag", "j0kudeqw"], ["updated_at", "2015-03-06 18:16:40.744663"]]
+  [1m[36m (12.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-03-06 18:21:05.781883"], ["name", "Event 1"], ["updated_at", "2015-03-06 18:21:05.781883"]]
+  [1m[35m (12.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-03-06 18:21:05.800724"], ["name", "Event 2"], ["updated_at", "2015-03-06 18:21:05.800724"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 18:21:05.840800"], ["name", "Location 1"], ["tag", "iyPlESV3"], ["updated_at", "2015-03-06 18:21:05.840800"]]
+  [1m[35m (13.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 18:21:05.856786"], ["name", "Location 2"], ["tag", "bU7JIXh0"], ["updated_at", "2015-03-06 18:21:05.856786"]]
+  [1m[36m (9.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 18:21:05.868786"], ["name", "Location 3"], ["tag", "VEgri2Dt"], ["updated_at", "2015-03-06 18:21:05.868786"]]
+  [1m[35m (9.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 18:21:05.880007"], ["name", "Location 4"], ["tag", "1y6s2LS0"], ["updated_at", "2015-03-06 18:21:05.880007"]]
+  [1m[36m (7.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 18:21:05.889179"], ["name", "Location 5"], ["tag", "IN70jgCy"], ["updated_at", "2015-03-06 18:21:05.889179"]]
+  [1m[35m (10.2ms)[0m  commit transaction
+
+
+Started GET "/" for 131.216.14.18 at 2015-03-06 18:31:14 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (4.3ms)
+Completed 200 OK in 28ms (Views: 17.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 131.216.14.18 at 2015-03-06 18:31:23 +0000
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 1636ms (Views: 1599.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/locations.css?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/events.css?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/application.css?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/events.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/locations.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/application.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 131.216.14.18 at 2015-03-06 18:31:25 +0000
+
+
+Started DELETE "/events/4" for 131.216.14.18 at 2015-03-06 18:31:29 +0000
+Processing by EventsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"lUeJImSazYn8k3lk/2o2+y4qi5ImJkVzwcmaORyuLj0=", "id"=>"4"}
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mDELETE FROM "events_locations" WHERE "events_locations"."event_id" = ?[0m  [[nil, 4]]
+SQLite3::SQLException: no such column: events_locations.event_id: DELETE FROM "events_locations" WHERE "events_locations"."event_id" = ?
+  [1m[35m (0.2ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 81ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: events_locations.event_id: DELETE FROM "events_locations" WHERE "events_locations"."event_id" = ?):
+  app/controllers/events_controller.rb:57:in `destroy'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (82.0ms)
+
+
+Started GET "/" for 131.216.14.18 at 2015-03-06 19:06:47 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (3.1ms)
+Completed 200 OK in 24ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (17.5ms)[0m  [1mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (15.6ms)[0m  CREATE TABLE "events_locations" ("locations_id" integer, "events_id" integer) 
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (19.3ms)[0m  CREATE  INDEX "index_events_locations_on_events_id" ON "events_locations" ("events_id")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_events_id' AND type='index'
+[0m
+  [1m[35m (15.8ms)[0m  CREATE  INDEX "index_events_locations_on_locations_id" ON "events_locations" ("locations_id")
+  [1m[36m (13.7ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "tag" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (15.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (13.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (19.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041914')[0m
+  [1m[35m (14.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150306041233')
+  [1m[36m (12.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041411')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-03-06 19:08:30.450267"], ["name", "Event 1"], ["updated_at", "2015-03-06 19:08:30.450267"]]
+  [1m[36m (16.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-03-06 19:08:30.473651"], ["name", "Event 2"], ["updated_at", "2015-03-06 19:08:30.473651"]]
+  [1m[35m (15.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:08:30.506837"], ["name", "Location 1"], ["tag", "349kSMgU"], ["updated_at", "2015-03-06 19:08:30.506837"]]
+  [1m[36m (18.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 19:08:30.528761"], ["name", "Location 2"], ["tag", "FoOfcdrG"], ["updated_at", "2015-03-06 19:08:30.528761"]]
+  [1m[35m (17.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:08:30.549270"], ["name", "Location 3"], ["tag", "BC1n20h6"], ["updated_at", "2015-03-06 19:08:30.549270"]]
+  [1m[36m (14.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 19:08:30.566127"], ["name", "Location 4"], ["tag", "LrIcgEyJ"], ["updated_at", "2015-03-06 19:08:30.566127"]]
+  [1m[35m (16.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:08:30.585683"], ["name", "Location 5"], ["tag", "eNSOlaPt"], ["updated_at", "2015-03-06 19:08:30.585683"]]
+  [1m[36m (13.7ms)[0m  [1mcommit transaction[0m
+  [1m[36m (12.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (14.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateEvents (20150306041233)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150306041233"]]
+  [1m[35m (13.0ms)[0m  commit transaction
+Migrating to CreateLocations (20150306041411)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "tag" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150306041411"]]
+  [1m[35m (10.5ms)[0m  commit transaction
+Migrating to CreateEventsLocations (20150306041914)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "events_locations" ("location_id" integer, "event_id" integer) 
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_events_locations_on_location_id" ON "events_locations" ("location_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_location_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_location_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_events_locations_on_event_id" ON "events_locations" ("event_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150306041914"]]
+  [1m[36m (13.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_event_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_event_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_location_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_location_id' AND type='index'
+
+  [1m[36m (15.0ms)[0m  [1mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (10.0ms)[0m  CREATE TABLE "events_locations" ("location_id" integer, "event_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (13.8ms)[0m  CREATE  INDEX "index_events_locations_on_event_id" ON "events_locations" ("event_id")
+  [1m[36m (0.6ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_locations_on_event_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_locations_on_event_id' AND type='index'
+[0m
+  [1m[35m (9.9ms)[0m  CREATE  INDEX "index_events_locations_on_location_id" ON "events_locations" ("location_id")
+  [1m[36m (10.0ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "tag" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (8.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (9.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041914')[0m
+  [1m[35m (12.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150306041233')
+  [1m[36m (10.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150306041411')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-03-06 19:09:01.990524"], ["name", "Event 1"], ["updated_at", "2015-03-06 19:09:01.990524"]]
+  [1m[36m (12.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "events" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-03-06 19:09:02.009080"], ["name", "Event 2"], ["updated_at", "2015-03-06 19:09:02.009080"]]
+  [1m[35m (9.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:09:02.034333"], ["name", "Location 1"], ["tag", "bAQTwWyS"], ["updated_at", "2015-03-06 19:09:02.034333"]]
+  [1m[36m (7.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 19:09:02.044360"], ["name", "Location 2"], ["tag", "mhpbZfSk"], ["updated_at", "2015-03-06 19:09:02.044360"]]
+  [1m[35m (9.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:09:02.055606"], ["name", "Location 3"], ["tag", "d4hP2twC"], ["updated_at", "2015-03-06 19:09:02.055606"]]
+  [1m[36m (8.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-03-06 19:09:02.065985"], ["name", "Location 4"], ["tag", "xtNKbzUW"], ["updated_at", "2015-03-06 19:09:02.065985"]]
+  [1m[35m (16.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "locations" ("created_at", "name", "tag", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-03-06 19:09:02.084513"], ["name", "Location 5"], ["tag", "rQx3VELv"], ["updated_at", "2015-03-06 19:09:02.084513"]]
+  [1m[36m (10.1ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 131.216.14.18 at 2015-03-06 19:09:16 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.9ms)
+Completed 200 OK in 28ms (Views: 16.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 131.216.14.18 at 2015-03-06 19:09:20 +0000
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 162ms (Views: 144.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/events.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/application.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/locations.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/events.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/locations.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started GET "/assets/application.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:21 +0000
+
+
+Started DELETE "/events/2" for 131.216.14.18 at 2015-03-06 19:09:24 +0000
+Processing by EventsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"lUeJImSazYn8k3lk/2o2+y4qi5ImJkVzwcmaORyuLj0=", "id"=>"2"}
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "events_locations" WHERE "events_locations"."event_id" = ?[0m  [["event_id", 2]]
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "events" WHERE "events"."id" = ?  [["id", 2]]
+  [1m[36m (21.9ms)[0m  [1mcommit transaction[0m
+Redirected to https://cs270spring2015-wallas4-2.c9.io/events
+Completed 302 Found in 64ms (ActiveRecord: 23.3ms)
+
+
+Started GET "/events" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 115ms (Views: 113.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/events.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/locations.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/application.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/application.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/events.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
+
+
+Started GET "/assets/locations.js?body=1" for 131.216.14.18 at 2015-03-06 19:09:25 +0000
